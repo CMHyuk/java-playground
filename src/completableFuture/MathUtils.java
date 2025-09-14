@@ -1,7 +1,6 @@
-package parallel;
+package completableFuture;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class MathUtils {
     

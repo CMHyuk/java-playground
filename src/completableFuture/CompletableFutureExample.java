@@ -1,4 +1,4 @@
-package parallel;
+package completableFuture;
 
 import java.util.*;
 import java.util.concurrent.*;

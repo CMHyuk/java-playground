@@ -1,6 +1,6 @@
 import java.util.*;
-import parallel.MathUtils;
-import parallel.CompletableFutureExample;
+import completableFuture.MathUtils;
+import completableFuture.CompletableFutureExample;
 
 public class Main {
     private static final int TASK_COUNT = 10000;
