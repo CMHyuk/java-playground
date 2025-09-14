@@ -4,16 +4,6 @@
 
 CompletableFuture는 Java 8에서 도입된 비동기 프로그래밍을 위한 클래스입니다. Future의 한계를 극복하고 비동기 작업을 더 쉽게 처리할 수 있게 해줍니다.
 
-## 기본 개념
-
-### CPU 집약적 작업 최적화
-
-```java
-private static final int CPU_CORES = Runtime.getRuntime().availableProcessors();
-// CPU 코어 수와 동일한 쓰레드 풀 크기 사용
-// 이유: 컨텍스트 스위칭 오버헤드 최소화
-```
-
 ## 주요 메서드별 사용법
 
 ### 1. supplyAsync - 기본 비동기 작업
@@ -146,31 +136,6 @@ CompletableFuture<Long> countFuture = CompletableFuture.supplyAsync(() ->
 CompletableFuture<Double> combinedFuture = sumFuture.thenCombine(countFuture,
         (sum, count) -> (double) sum / count
 );
-```
-
-## 쓰레드 풀 최적화
-
-### CPU 집약적 작업
-
-- **쓰레드 풀 크기**: CPU 코어 수와 동일
-- **이유**: 컨텍스트 스위칭 오버헤드 최소화
-- **적용 예시**: 소수 계산, 수학 연산, 이미지 처리
-
-### 데이터 분할 전략
-
-```java
-private static List<List<Integer>> splitIntoChunks(List<Integer> list) {
-    List<List<Integer>> chunks = new ArrayList<>();
-    int chunkSize = list.size() / CPU_CORES;
-
-    for (int i = 0; i < CPU_CORES; i++) {
-        int start = i * chunkSize;
-        int end = (i == CPU_CORES - 1) ? list.size() : (i + 1) * chunkSize;
-        chunks.add(list.subList(start, end));
-    }
-
-    return chunks;
-}
 ```
 
 ## 사용 시나리오별 가이드
